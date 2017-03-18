@@ -28,12 +28,25 @@ export default class Header extends React.Component{
 		});
 	}
 	signUp(e){
+		//needs to holds if statement
 		e.preventDefault();
-		console.log()
+		console.log('signing up');
+		console.log(this.state.email, this.state.password, this.state.confirm);
+		if(this.state.password === this.state.confirm){ firebase.auth()
+			.createUserWithEmailAndPassword(
+				this.state.email, this.state.password).then((userData) => {
+					console.log(userData);
+				})
+		}else{
+			console.log('please ensure passwords match')
+		}
 	}
 	login(e){
 		e.preventDefault();
-		//needs to holds if statement
+		firebase.auth()
+		.signInWithEmailAndPassword(this.state.email, this.state.password).then((userData)=>{
+			console.log(userData);
+		});
 	}
 	render(){
 		//holds empty object where the selected form will go into
@@ -63,7 +76,7 @@ export default class Header extends React.Component{
 			</form>
 			);
 		} else {
-			console.log('error');
+			// console.log('error');
 		}
 		return (
 			<header>

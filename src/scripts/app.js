@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ajax } from 'jquery';
-import Autocomplete from 'react-google-autocomplete';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
 import Blogcard from './components/Blogcard';
+import Autocomplete from 'react-google-autocomplete';
 
-console.log('hello');
+var fuzzy = require('fuzzy');
+
+ console.log(fuzzy);
+
 
 const apiKey ='AIzaSyB1EIPG-WkM1tGCOP_sLE57sxcuz8DE-Vg';
 
@@ -45,23 +48,28 @@ class App extends React.Component{
 	}
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
-		dbRef.on('value', data => {
-		const databaseData = data.val();
-		const postArray = [];
 
-		for(let itemKey in databaseData){
-			// console.log(itemKey);
-			// console.log(databaseData[itemKey]);
-			const postKey = databaseData[itemKey];
-			postKey.key = itemKey;
-			postArray.push(databaseData[itemKey]);
-		}
-		console.log(postArray);
-		this.setState({
-			blogPosts:postArray
-			});
+
+		firebase.auth().onAuthStateChanged((user) => {
+			if(user){
+				dbRef.on('value', (data) => {
+				const databaseData = data.val();
+				const postArray = [];
+
+				for(let itemKey in databaseData){
+					// console.log(itemKey);
+					// console.log(databaseData[itemKey]);
+					const postKey = databaseData[itemKey];
+					postKey.key = itemKey;
+					postArray.push(databaseData[itemKey]);
+				}
+					console.log(postArray);
+					this.setState({
+					blogPosts:postArray
+					});
+				});
+			}
 		})
-
 	}
 	showForm(){
 	//when new post clicked pop up module that shows the form
@@ -87,9 +95,6 @@ class App extends React.Component{
 	getLocation(){
 		//run google autocomplete on the input of location
 		//on click of specific location set that user location to that clicked (google) value
-	}
-	searchPosts(){
-		//search posts for keywords and filter them
 	}
 	render(){
 		return (
