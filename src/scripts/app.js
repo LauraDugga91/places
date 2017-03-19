@@ -9,7 +9,6 @@ import Autocomplete from 'react-google-autocomplete';
 
 const apiKey ='AIzaSyB1EIPG-WkM1tGCOP_sLE57sxcuz8DE-Vg';
 
-
 // firebase link
 const config = {
    apiKey: "AIzaSyBCiX2kJEHBw3hq54L3OY6mb-tDg75E8ro",
@@ -32,6 +31,7 @@ class App extends React.Component{
 			title: ''
 		}
 		this.addPost = this.addPost.bind(this);
+		this.uploadPhoto = this.uploadPhoto.bind(this);
 		this.trackChange = this.trackChange.bind(this);
 		this.searchToState = this.searchToState.bind(this);
 		this.searchPosts = this.searchPosts.bind(this);
@@ -66,6 +66,20 @@ class App extends React.Component{
 			[e.target.name]: e.target.value
 		});
 	}
+	uploadPhoto(e){
+		// const fileButton = document.getElementById('fileButton');
+		// // listen for file selection
+		let file = e.target.files[0]
+		// create storage ref
+		const storageRef =firebase.storage().ref('userPhotos/' + file.name);
+			// upload file
+		const task = storageRef.put(file);
+		const urlObject = storageRef.getDownloadURL().then((data) => {
+		 console.log(data);
+		 this.setState ({ 
+		 photo: data
+		});})
+	}
 	addPost(e){
 		e.preventDefault();
 		//submit information to firebase
@@ -74,6 +88,7 @@ class App extends React.Component{
 		const post = {
 			title: this.state.title,
 			location: this.state.location,
+			note:this.state.note,
 			photo: this.state.photo
 			};
 			const dbRef = firebase.database().ref();
@@ -109,9 +124,7 @@ class App extends React.Component{
 						return <Blogcard data={item} />
 					})}
 				</ul>
-			)
-			console.log('posts')
-		} else {
+		)} else {
 			postView = ( 
 				<ul>
 					{this.state.filteredPosts.map((item) => { return <Blogcard data={item} />
@@ -127,11 +140,13 @@ class App extends React.Component{
 					<label htmlFor="title">Title:</label>
 					<input type="text" name="title" onChange={this.trackChange}/>
 					<label htmlFor="location">Location:</label>
-					<Autocomplete name="location" className="autocompleteInput" style={{width: '20%'}} onPlaceSelected={(place) => {console.log(place.name);}
-					} types={['establishment','geocode']} />
+					<Autocomplete name="location" className="autocompleteInput" style={{width: '20%'}} onChange={this.trackChange} onPlaceSelected={(place) => {console.log(place.name)}
+					}  types={['establishment','geocode']} />
 					<label htmlFor="photo">Image</label>
-					<input type="file" name="photo" accept="image/*" onChange={this.trackChange} />
-					<button>Add Post</button>
+					<input type="file" name="photo" accept="image/*" onChange={this.uploadPhoto} />
+					<label htmlFor="title">Note</label>
+					<textarea type="text" name="note" rows="4" cols="50" onChange={this.trackChange}></textarea>
+					<button classID="fileButton">Add Post</button>
 				</form>
 				<section className="blogPage">
 				{postView}
