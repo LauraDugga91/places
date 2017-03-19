@@ -9,16 +9,6 @@ import Autocomplete from 'react-google-autocomplete';
 
 const apiKey ='AIzaSyB1EIPG-WkM1tGCOP_sLE57sxcuz8DE-Vg';
 
-//autocomplete script 
-// <Autocomplete
-//     style={{width: '90%'}}
-//     onPlaceSelected={(place) => {
-//       console.log(place);
-//     }}
-//     types={['(regions)']}
-//     componentRestrictions={{country: "ru"}}
-// />
-
 
 // firebase link
 const config = {
@@ -137,10 +127,10 @@ class App extends React.Component{
 					<label htmlFor="title">Title:</label>
 					<input type="text" name="title" onChange={this.trackChange}/>
 					<label htmlFor="location">Location:</label>
-					<input type="text" name="location" onChange={this.trackChange}/>
+					<Autocomplete name="location" className="autocompleteInput" style={{width: '20%'}} onPlaceSelected={(place) => {console.log(place.name);}
+					} types={['establishment','geocode']} />
 					<label htmlFor="photo">Image</label>
 					<input type="file" name="photo" accept="image/*" onChange={this.trackChange} />
-					<input type="text" name="photo" />
 					<button>Add Post</button>
 				</form>
 				<section className="blogPage">
@@ -154,3 +144,5 @@ class App extends React.Component{
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
+// goes usually with the title input ~ line 133
+// <input type="text" name="location" onChange={this.trackChange}/>
