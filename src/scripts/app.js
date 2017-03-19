@@ -6,10 +6,6 @@ import Searchbar from './components/Searchbar';
 import Blogcard from './components/Blogcard';
 import Autocomplete from 'react-google-autocomplete';
 
-var fuzzy = require('fuzzy');
-
- console.log(fuzzy);
-
 
 const apiKey ='AIzaSyB1EIPG-WkM1tGCOP_sLE57sxcuz8DE-Vg';
 
@@ -38,17 +34,20 @@ class App extends React.Component{
 	constructor(){
 		super();
 		this.state = {
-			blogPosts: [],
-			title: '',
+			posts:[],
+			filteredPosts: [],
 			location: '',
-			photo: ''
+			photo: '',
+			search: '',
+			title: ''
 		}
 		this.addPost = this.addPost.bind(this);
 		this.trackChange = this.trackChange.bind(this);
+		this.searchToState = this.searchToState.bind(this);
+		this.searchPosts = this.searchPosts.bind(this);
 	}
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
-
 
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user){
@@ -57,19 +56,17 @@ class App extends React.Component{
 				const postArray = [];
 
 				for(let itemKey in databaseData){
-					// console.log(itemKey);
-					// console.log(databaseData[itemKey]);
 					const postKey = databaseData[itemKey];
 					postKey.key = itemKey;
 					postArray.push(databaseData[itemKey]);
 				}
-					console.log(postArray);
-					this.setState({
-					blogPosts:postArray
-					});
+				console.log(postArray);
+				this.setState({
+				posts:postArray
 				});
-			}
-		})
+			});
+		}
+	})
 	}
 	showForm(){
 	//when new post clicked pop up module that shows the form
@@ -96,11 +93,46 @@ class App extends React.Component{
 		//run google autocomplete on the input of location
 		//on click of specific location set that user location to that clicked (google) value
 	}
+	searchToState(e){
+		this.setState({
+			search: e.target.value
+		})
+	}
+	searchPosts(e){
+		e.preventDefault();
+		//join takes all of blogcards object properties and combines into a string to be able to search the whole card versus one element
+		//includes looks for the value within that string 
+		const filtered = this.state.posts.filter(post => {
+		  return Object.values(post).join(',').includes(this.state.search);
+		})
+		console.log(this.state.search);
+		this.setState({
+		 filteredPosts: filtered
+		})
+	}
 	render(){
+		let postView ='';
+		if (this.state.search === ""){
+			postView = (
+				<ul>
+					{this.state.posts.map((item) => {
+						return <Blogcard data={item} />
+					})}
+				</ul>
+			)
+			console.log('posts')
+		} else {
+			postView = ( 
+				<ul>
+					{this.state.filteredPosts.map((item) => { return <Blogcard data={item} />
+						})}
+				</ul>
+			)
+		}
 		return (
 			<div>
 				<Header />
-				<Searchbar />
+				<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>
 				<form htmlFor="postForm" onSubmit={this.addPost}>
 					<label htmlFor="title">Title:</label>
 					<input type="text" name="title" onChange={this.trackChange}/>
@@ -112,11 +144,7 @@ class App extends React.Component{
 					<button>Add Post</button>
 				</form>
 				<section className="blogPage">
-					<ul>
-					{this.state.blogPosts.map((item) => {
-						return <Blogcard data={item}/>
-					})}
-					</ul>
+				{postView}
 				</section>
 			</div>
 		)
@@ -125,3 +153,4 @@ class App extends React.Component{
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
+

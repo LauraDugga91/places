@@ -2,7 +2,6 @@
 
  export default function Blogcard(props) {
  //this will hold the blog post card with the information(title, location, photo)
- // console.log(props);
  	return (
  		<li className="blogContent">
 	 		<h1 className="cardTitle">{props.data.title}</h1>
