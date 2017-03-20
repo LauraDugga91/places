@@ -29,6 +29,7 @@ class App extends React.Component{
 			photo: '',
 			search: '',
 			title: '',
+			blogPage: true,
 			newPostShow: false
 		}
 		this.addPost = this.addPost.bind(this);
@@ -38,7 +39,7 @@ class App extends React.Component{
 		this.searchToState = this.searchToState.bind(this);
 		this.searchPosts = this.searchPosts.bind(this);
 		this.showForm = this.showForm.bind(this);
-		// this.hideForm = this.hideForm.bind(this);
+		this.signOut = this.signOut.bind(this);
 	}
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
@@ -56,7 +57,8 @@ class App extends React.Component{
 				}
 				console.log(postArray);
 				this.setState({
-				posts:postArray
+				posts:postArray,
+				blogPage: false
 				});
 			});
 		}
@@ -69,6 +71,16 @@ class App extends React.Component{
 		this.setState({
 		newPostShow: true
 		});
+	}
+	hideBlogPage(e){
+		const currentUser = firebase.auth().currentUser;
+		console.log(currentUser)
+		if(currentUser) {
+			console.log('logged IN')
+		}
+		this.setState({
+			blogPage: false
+		})
 	}
 	trackChange(e) {
 		this.setState({
@@ -124,6 +136,13 @@ class App extends React.Component{
 		const dbRef = firebase.database().ref(postToRemove.key);
 		dbRef.remove();
 	}
+	signOut(e){
+		console.log('signing out');
+		firebase.auth().signOut();
+		this.setState({
+		 blogPage: true
+		})
+	}
 	render(){
 		let newPostForm = '';
 		if(this.state.newPostShow === true){
@@ -148,6 +167,8 @@ class App extends React.Component{
 			// 	console.log('no form showing');
 			// )
 		}
+
+// SETTING THE LOGIN PAGE
 		let postView ='';
 		if (this.state.search === ""){
 			postView = (
@@ -164,15 +185,28 @@ class App extends React.Component{
 				</ul>
 			)
 		}
+
+		let account = (
+			<Header />
+		);
+
+		let blogPage = (
+			<div>
+				<header className="header__blogPage">
+					<h1>PLACES</h1>
+					<button onClick={this.signOut}>Sign Out</button>
+				</header>
+				<button onClick={this.showForm}>+ New Post</button>
+				{newPostForm}
+				<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>
+				<section className="blogPage">
+				{postView}
+				</section>
+			</div>
+		)
 		return (
 			<div>
-				<Header />
-					<button onClick={this.showForm}>+ New Post</button>
-					{newPostForm}
-					<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>
-					<section className="blogPage">
-					{postView}
-					</section>
+				{this.state.blogPage === false ? blogPage : account}
 			</div>
 		)
 	}
@@ -181,5 +215,3 @@ class App extends React.Component{
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
-// goes usually with the title input ~ line 133
-// <input type="text" name="location" onChange={this.trackChange}/>

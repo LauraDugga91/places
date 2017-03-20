@@ -79,7 +79,7 @@ export default class Header extends React.Component{
 			// console.log('error');
 		}
 		return (
-			<header>
+			<header className="header__signIn">
 				<ul>
 					<li><a href="" className="signUp" onClick={this.showForm}>Create Account</a></li>
 					<li><a href="" className="login" onClick={this.showForm}>Log In</a></li>
