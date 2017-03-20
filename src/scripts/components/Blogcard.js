@@ -8,6 +8,7 @@
 	 		<p className="cardLocation">{props.data.location}</p>
 	 		<img className="cardPhoto" src= {`${props.data.photo}`} />
 	 		<p className="cardNote">{props.data.note}</p>
+	 		<button onClick={() => props.remove(props.data)}>Remove Item</button>
  		</li>
  	)
  }

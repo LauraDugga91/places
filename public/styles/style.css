@@ -156,6 +156,10 @@ label {
 textarea {
   resize: none; }
 
+input {
+  outline: none;
+  border: 1.7px solid #333438; }
+
 .blogMason {
   width: 90%;
   margin: 0 auto;
@@ -164,11 +168,32 @@ textarea {
   -moz-column-gap: 20px;
        column-gap: 20px; }
 
-.postForm {
+.form__post {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-      flex-direction: column; }
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin: 0 auto;
+  width: 60%;
+  border: 3px solid #FFFDF9; }
+
+.form__post--input {
+  width: 80%;
+  margin: 0 auto; }
+
+.autocompleteInput {
+  margin: 0 auto; }
+
+.form__search {
+  text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center; }
 
 .blogContent {
   background-color: #FBFAFA;

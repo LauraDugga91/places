@@ -11,7 +11,11 @@ $contentTypog: 'Space Mono', monospace;
 
 $mainBackgroundColor: #EDEDED;
 $postBackgroundColor: #FBFAFA;
+$formBorderColor: #FFFDF9;
+$inputBorderColor: #333438;
 $mainTextColor: #231F20;
+
+
 
 // element styling
 html{
@@ -48,6 +52,11 @@ textarea{
 	resize:none;
 }
 
+input {
+	outline: none;
+	border: 1.7px solid $inputBorderColor;
+}
+
 .blogMason{
 	width: 90%;
 	margin: 0 auto;
@@ -58,9 +67,33 @@ textarea{
 }
 
 // Header.js styling
-.postForm {
+
+// app.js styling
+.form__post {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	margin:0 auto;
+	width:60%;
+	// align-content:center;
+	border: 3px solid $formBorderColor;
+}
+
+.form__post--input{
+	width:80%;
+	margin:0 auto;
+}
+
+.autocompleteInput {
+	margin: 0 auto;
+}
+
+//Searchbar.js styling
+.form__search{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
 }
 
 //Blogcard.js styling

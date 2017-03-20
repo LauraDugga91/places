@@ -28,13 +28,17 @@ class App extends React.Component{
 			location: '',
 			photo: '',
 			search: '',
-			title: ''
+			title: '',
+			newPostShow: false
 		}
 		this.addPost = this.addPost.bind(this);
+		// this.getLocation = this.getLocation.bind(this);
 		this.uploadPhoto = this.uploadPhoto.bind(this);
 		this.trackChange = this.trackChange.bind(this);
 		this.searchToState = this.searchToState.bind(this);
 		this.searchPosts = this.searchPosts.bind(this);
+		this.showForm = this.showForm.bind(this);
+		// this.hideForm = this.hideForm.bind(this);
 	}
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
@@ -58,27 +62,28 @@ class App extends React.Component{
 		}
 	})
 	}
-	showForm(){
+	showForm(e){
 	//when new post clicked pop up module that shows the form
+	e.preventDefault();
+		console.log('shit works');
+		this.setState({
+		newPostShow: true
+		});
 	}
 	trackChange(e) {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	}
-	uploadPhoto(e){
-		// const fileButton = document.getElementById('fileButton');
-		// // listen for file selection
-		let file = e.target.files[0]
-		// create storage ref
-		const storageRef =firebase.storage().ref('userPhotos/' + file.name);
-			// upload file
-		const task = storageRef.put(file);
+	uploadPhoto(e) {
+		let file = e.target.files[0];
+		const storageRef = firebase.storage().ref('userPhotos/' + file.name);
+		const task = storageRef.put(file).then(() => {
 		const urlObject = storageRef.getDownloadURL().then((data) => {
-		 console.log(data);
-		 this.setState ({ 
-		 photo: data
-		});})
+		this.setState ({
+			photo: data })
+			})
+		});
 	}
 	addPost(e){
 		e.preventDefault();
@@ -89,14 +94,13 @@ class App extends React.Component{
 			title: this.state.title,
 			location: this.state.location,
 			note:this.state.note,
-			photo: this.state.photo
+			photo: this.state.photo,
 			};
 			const dbRef = firebase.database().ref();
 			dbRef.push(post);
-	}
-	getLocation(){
-		//run google autocomplete on the input of location
-		//on click of specific location set that user location to that clicked (google) value
+			this.setState({
+				newPostShow: false
+			})
 	}
 	searchToState(e){
 		this.setState({
@@ -115,24 +119,47 @@ class App extends React.Component{
 		 filteredPosts: filtered
 		})
 	}
-	// removePost(postToRemove){
-	// 	console.log('removing...')
-	// 	const dbRef = firebase.database().ref(postToRemove).key;
-	// 	dbRef.remove();
-	// }
+	removePost(postToRemove){
+		console.log(postToRemove);
+		const dbRef = firebase.database().ref(postToRemove.key);
+		dbRef.remove();
+	}
 	render(){
+		let newPostForm = '';
+		if(this.state.newPostShow === true){
+			newPostForm = (
+				<form className="form__post" htmlFor="postForm" onSubmit={this.addPost}>
+					<label htmlFor="title">Title</label>
+					<input type="text" name="title" className="form__post--input"onChange={this.trackChange}/>
+					<label htmlFor="location">Location</label>
+					<Autocomplete name="location" className="autocompleteInput form__post--input" style={{display: 'flex'}}  onPlaceSelected={(place) => {
+						console.log(place);
+						this.setState({
+							location: place.formatted_address})}}  types={['establishment','geocode'] } />
+					<label htmlFor="photo">Image</label>
+					<input type="file" name="photo" className=" form__post--input" accept="image/*" onChange={this.uploadPhoto} />
+					<label htmlFor="title">Note</label>
+					<textarea type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
+					<button>Add Post</button>
+				</form>
+			)
+		}else{
+			// newPostform = (
+			// 	console.log('no form showing');
+			// )
+		}
 		let postView ='';
 		if (this.state.search === ""){
 			postView = (
 				<ul className="blogMason">
 					{this.state.posts.map((item) => {
-						return <Blogcard data={item} />
+						return <Blogcard data={item} remove={this.removePost} key={item.key} />
 					})}
 				</ul>
 		)} else {
 			postView = ( 
 				<ul className="blogMason">
-					{this.state.filteredPosts.map((item) => { return <Blogcard data={item} />
+					{this.state.filteredPosts.map((item) => { return <Blogcard data={item} remove={this.removePost} key={item.key} />
 						})}
 				</ul>
 			)
@@ -140,19 +167,9 @@ class App extends React.Component{
 		return (
 			<div>
 				<Header />
+					<button onClick={this.showForm}>+ New Post</button>
+					{newPostForm}
 					<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>
-					<form className="postForm" htmlFor="postForm" onSubmit={this.addPost}>
-						<label htmlFor="title">Title:</label>
-						<input type="text" name="title" onChange={this.trackChange}/>
-						<label htmlFor="location">Location:</label>
-						<Autocomplete name="location" className="autocompleteInput" style={{width: '20%'}} onChange={this.trackChange} onPlaceSelected={(place) => {console.log(place.name)}
-						}  types={['establishment','geocode']} />
-						<label htmlFor="photo">Image</label>
-						<input type="file" name="photo" accept="image/*" onChange={this.uploadPhoto} />
-						<label htmlFor="title">Note</label>
-						<textarea type="text" name="note" rows="4" cols="50" onChange={this.trackChange}></textarea>
-						<button classID="fileButton">Add Post</button>
-					</form>
 					<section className="blogPage">
 					{postView}
 					</section>

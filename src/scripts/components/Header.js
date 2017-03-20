@@ -85,8 +85,6 @@ export default class Header extends React.Component{
 					<li><a href="" className="login" onClick={this.showForm}>Log In</a></li>
 				</ul>
 				{loginForm}
-				<p>username:</p>
-				<p>+ new post</p>
 				<h1>Places</h1>
 			</header>
 		)
