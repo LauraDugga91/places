@@ -61,7 +61,7 @@ export default class Header extends React.Component{
 				<input type="password" name="password" onChange={this.trackChange} />
 				<label htmlFor="confirm">Confirm:</label>
 				<input type="password" name="confirm" onChange={this.trackChange} />
-				<button>Create Account</button>
+				<button className="button button__submit">CREATE ACCOUNT</button>
 			</form>
 			);
 		} else if (this.state.showForm === 'login'){
@@ -72,7 +72,7 @@ export default class Header extends React.Component{
 				<input type="email" name="email" onChange={this.trackChange} />
 				<label htmlFor="email">Password:</label>
 				<input type="password" name="password" onChange={this.trackChange} />
-				<button>Log In</button>
+				<button className="button button__submit" >LOG IN</button>
 			</form>
 			);
 		} else {
@@ -80,12 +80,12 @@ export default class Header extends React.Component{
 		}
 		return (
 			<header className="header__signIn">
+				<h1>PLACES</h1>
 				<ul>
-					<li><a href="" className="signUp" onClick={this.showForm}>Create Account</a></li>
-					<li><a href="" className="login" onClick={this.showForm}>Log In</a></li>
+					<li><a href="" className="signUp" onClick={this.showForm}>CREATE ACCOUNT</a></li>
+					<li><a href="" className="login" onClick={this.showForm}>LOG IN</a></li>
 				</ul>
 				{loginForm}
-				<h1>Places</h1>
 			</header>
 		)
 	}

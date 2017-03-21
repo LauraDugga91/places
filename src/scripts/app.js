@@ -40,6 +40,7 @@ class App extends React.Component{
 		this.searchPosts = this.searchPosts.bind(this);
 		this.showForm = this.showForm.bind(this);
 		this.signOut = this.signOut.bind(this);
+		this.hideModal = this.hideModal.bind(this);
 	}
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
@@ -71,6 +72,11 @@ class App extends React.Component{
 		this.setState({
 		newPostShow: true
 		});
+	}
+	hideModal(e){
+		this.setState({
+			newPostShow: false
+		})
 	}
 	hideBlogPage(e){
 		const currentUser = firebase.auth().currentUser;
@@ -148,6 +154,10 @@ class App extends React.Component{
 		if(this.state.newPostShow === true){
 			newPostForm = (
 				<form className="form__post" htmlFor="postForm" onSubmit={this.addPost}>
+					<button onClick={this.hideModal}>
+						<i className="fa fa-times" aria-hidden="true"></i>
+					</button>
+					<h2>ADD A NEW PLACE:</h2>
 					<label htmlFor="title">Title</label>
 					<input type="text" name="title" className="form__post--input"onChange={this.trackChange}/>
 					<label htmlFor="location">Location</label>
@@ -159,7 +169,7 @@ class App extends React.Component{
 					<input type="file" name="photo" className=" form__post--input" accept="image/*" onChange={this.uploadPhoto} />
 					<label htmlFor="title">Note</label>
 					<textarea type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
-					<button>Add Post</button>
+					<button className="button button__submit">Add Post</button>
 				</form>
 			)
 		}else{
@@ -193,10 +203,10 @@ class App extends React.Component{
 		let blogPage = (
 			<div>
 				<header className="header__blogPage">
+					<button className="button button--header" onClick={this.showForm}>+ New Post</button>
+					<button className="button button--header" onClick={this.signOut}>Sign Out</button>
 					<h1>PLACES</h1>
-					<button onClick={this.signOut}>Sign Out</button>
 				</header>
-				<button onClick={this.showForm}>+ New Post</button>
 				{newPostForm}
 				<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>
 				<section className="blogPage">

@@ -11,15 +11,23 @@ $contentTypog: 'Space Mono', monospace;
 
 $mainBackgroundColor: #EDEDED;
 $postBackgroundColor: #FBFAFA;
+$modalBackgroundColor: #EFE6DD;
+$buttonBackgroundColor: #2B3145;
+
 $formBorderColor: #FFFDF9;
 $inputBorderColor: #333438;
+
 $mainTextColor: #231F20;
-
-
+$buttonTextColor: #FFFCF9;
 
 // element styling
 html{
 	font-size: 62.5%;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #89949E;
 }
 
 ul {
@@ -34,7 +42,18 @@ body {
 h1{
 	font-family: $headerTypog;
 	color: $mainTextColor;
+	font-size: 3.5rem;
 	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 6px;
+}
+
+h2{
+	font-family: $headerTypog;
+	color: $mainTextColor;
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin:0;
 	text-transform: uppercase;
 	letter-spacing: 3px;
 }
@@ -45,50 +64,104 @@ header{
 }
 
 label{
-	font-family: $contentTypog;
+	font-family: $headerTypog;
+	font-size: 2rem;
+	letter-spacing: 2px;
 }
 
 textarea{
 	resize:none;
+	border: 1px solid $inputBorderColor;
 }
 
 input {
+	text-align: center;
 	outline: none;
-	border: 1.7px solid $inputBorderColor;
+	border: 1px solid $inputBorderColor;
+}
+
+span {
+	// display: none;
 }
 
 .blogMason{
 	width: 90%;
-	margin: 0 auto;
-	// padding-right: 60px;
-	// padding-left: 60px;
+	margin: 25px auto;
 	column-count: 3;
-	column-gap: 20px;
+	column-gap: 15px;
 }
 
 // Header.js styling
 .header__signIn{
+	display: flex;
+	flex-direction: column;
+	justify-content:center; 
+	align-content:center;
+}
 
+.header__signIn a {
+	font-family: $contentTypog;
+	font-size: 2rem;
+}
+
+.userForm {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width:80%;
+	label {
+		margin-top: 20px;
+		margin-bottom: 5px;
+		letter-spacing: 2px;
+	}
+}
+
+.userForm input{
+	font-family: $contentTypog;
+	font-size: 2rem;
+	padding: 10px;
 }
 
 // app.js styling
 .header__blogPage{
-	
+	display: flex;
+	flex-direction: column;
 }
 
 .form__post {
+	text-align: center;
+	background-color: $modalBackgroundColor;
+	border: 3px solid $formBorderColor;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-content:center;
+	padding: 30px;
 	margin:0 auto;
 	width:60%;
 	// align-content:center;
-	border: 3px solid $formBorderColor;
+	position: absolute;
+	top: 50%;
+	left:20%;
+	z-index: 10;
+	h2{
+		margin-bottom: 20px;
+	}
+	label {
+		margin-top: 20px;
+		margin-bottom: 5px;
+		letter-spacing: 2px;
+	}
 }
 
 .form__post--input{
+	font-family: $contentTypog;
+	color: $mainTextColor;
+	background-color: $buttonTextColor;
 	width:80%;
 	margin:0 auto;
+	font-size: 1.6rem;
+	padding: 10px;
 }
 
 .autocompleteInput {
@@ -101,6 +174,16 @@ input {
 	display: flex;
 	flex-direction: column;
 	justify-content:center;
+}
+
+.form__search--input{
+	font-family: $contentTypog;
+	color: $mainTextColor;
+	background-color: $postBackgroundColor;
+	width:60%;
+	margin:10px auto;
+	font-size: 1.6rem;
+	padding: 10px;
 }
 
 //Blogcard.js styling
@@ -118,17 +201,60 @@ input {
 	padding: 10px 20px;
 }
 
+.fa-compass{
+	font-size: 2rem;
+	margin:10px 10px 10px -20px;
+}
 .cardLocation{
 	font-family: $contentTypog;
 	padding: 10px 20px;
+	margin:0;
 }
 
 .cardPhoto{
 	width: 100%;
-	// padding: 10px 20px;
+}
+
+.fa-sticky-note-o::before{
+	font-size: 2rem;
+	margin:10px 10px 10px -20px;
 }
 
 .cardNote{
 	font-family: $contentTypog;
 	padding: 10px 20px;
+	margin:0;
+}
+
+// buttons
+.button{
+	background:none;
+	border:none;
+	font-size:1em;
+	color: #FFFCF9;
+	font-family: $contentTypog;
+	background-color: $buttonBackgroundColor;
+}
+
+.button__submit {
+	margin: 10px auto;
+	font-size: 2rem;
+	padding: 10px;
+	font-family: $contentTypog;
+}
+
+.button__submit--width{
+	width: 25%;
+}
+
+.button--header {
+	width: 10%;
+}
+
+.button__remove{
+	outline:none;
+	font-size: 1.6rem;
+	color: $mainTextColor;
+	background-color: #FFF;
+	border: 1px solid $inputBorderColor;
 }
