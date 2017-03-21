@@ -177,7 +177,6 @@ class App extends React.Component{
 			// 	console.log('no form showing');
 			// )
 		}
-
 // SETTING THE LOGIN PAGE
 		let postView ='';
 		if (this.state.search === ""){
@@ -203,8 +202,10 @@ class App extends React.Component{
 		let blogPage = (
 			<div>
 				<header className="header__blogPage">
-					<button className="button button--header" onClick={this.showForm}>+ New Post</button>
-					<button className="button button--header" onClick={this.signOut}>Sign Out</button>
+					<div className="flexWrapper">
+						<button className="button button--header" onClick={this.showForm}>+ New Post</button>
+						<button className="button button--header" onClick={this.signOut}>Sign Out</button>
+					</div>
 					<h1>PLACES</h1>
 				</header>
 				{newPostForm}

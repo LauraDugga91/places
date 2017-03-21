@@ -92,6 +92,11 @@ span {
 }
 
 // Header.js styling
+.flexWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
 .header__signIn{
 	display: flex;
 	flex-direction: column;
