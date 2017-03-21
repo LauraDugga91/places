@@ -66,13 +66,13 @@ class App extends React.Component{
 	}
 	showForm(e){
 	e.preventDefault();
-	this.overlay.classList.add('show');
+	this.overlayForm.classList.add('show');
 		this.setState({
 		newPostShow: true
 		});
 	}
 	hideModal(e){
-	this.overlay.classList.remove('show');
+	this.overlayForm.classList.remove('show');
 		this.setState({
 			newPostShow: false
 		})
@@ -104,7 +104,7 @@ class App extends React.Component{
 	}
 	addPost(e){
 		e.preventDefault();
-		this.overlay.classList.remove('show');
+		this.overlayForm.classList.remove('show');
 		//submit information to firebase
 		//close form modal and hide
 		//add new post tile to the home page
@@ -130,7 +130,7 @@ class App extends React.Component{
 		//join takes all of blogcards object properties and combines into a string to be able to search the whole card versus one element
 		//includes looks for the value within that string 
 		const filtered = this.state.posts.filter(post => {
-		  return Object.values(post).join(',').includes(this.state.search);
+		  return Object.values(post).join(',').toLowerCase().includes(this.state.search.toLowerCase());
 		})
 		console.log(this.state.search);
 		this.setState({
@@ -214,7 +214,7 @@ class App extends React.Component{
 		)
 		return (
 			<div>
-				<div className="overlay" ref={ ref => this.overlay = ref}></div>
+				<div className="overlayForm" ref={ ref => this.overlayForm = ref}></div>
 				{this.state.blogPage === false ? blogPage : account}
 			</div>
 		)

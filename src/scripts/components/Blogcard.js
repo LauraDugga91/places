@@ -16,6 +16,7 @@
  	showPost(e){
 		e.preventDefault();
 		this.blogContent.classList.add('focus');
+		this.overlayPost.classList.add('show');
 		this.setState({
 			closePost: true
 		})
@@ -26,6 +27,7 @@
  		console.log('removing class');
  		console.log(this.blogContent);
  		this.blogContent.classList.remove('focus');
+ 		this.overlayPost.classList.remove('show');
  		this.setState({
  			closePost: false
  		});
@@ -40,6 +42,7 @@
 	 					</button>)
  					}
  				})()}
+ 				<div className="overlayPost" ref={ ref => this.overlayPost = ref}></div>
  				<h2 className="cardTitle">{this.props.data.title}</h2>
 		 		<p className="cardLocation"><i className="fa fa-compass" aria-hidden="true"></i>
 					{this.props.data.location}</p>

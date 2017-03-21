@@ -80,20 +80,36 @@ input {
 	border: 1px solid $inputBorderColor;
 }
 
-.overlay.show{
+.overlayForm.show{
 	visibility: visible;
 }
 
-.overlay{
+.overlayPost.show{
+	visibility: visible;
+}
+
+.overlayPost{
 	background-color: rgba(255,255,255, 0.9);
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 5;
+	z-index: -1000;
 	visibility: hidden;
 }
+
+.overlayForm{
+	background-color: rgba(255,255,255, 0.9);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	visibility: hidden;
+}
+
 
 .blogMason{
 	width: 90%;
@@ -158,7 +174,7 @@ input {
 	position: absolute;
 	top: 10%;
 	left:20%;
-	z-index: 10;
+	z-index: 100;
 	h2{
 		margin-bottom: 20px;
 	}
@@ -193,11 +209,16 @@ input {
 
 //Blogcard.js styling
 .blogContent{
+	text-align: left;
 	background-color: $postBackgroundColor;
 	display: inline-block;
 	margin:  10px 0;
 	padding: 20px;
 	width: 100%; 
+	z-index: 100;
+	img {
+		width:90%;
+	}
 }
 
 .blogContent:hover{
@@ -209,11 +230,15 @@ input {
 	display: inline-block;
 	margin:  10px 0;
 	padding: 20px;
-	position: fixed;
+	position: absolute;
 	top: 10%;
 	left: 25%;
 	width: 50%; 
-	z-index: 15;
+	z-index: 100;
+	height: 80vh;
+	img{
+		width:90%;
+	}
 }
 
 .cardTitle {
@@ -236,7 +261,7 @@ input {
 	width: 100%;
 }
 
-.fa-sticky-note-o::before{
+.fa-sticky-note-o{
 	font-size: 2rem;
 	margin:10px 10px 10px -20px;
 }
