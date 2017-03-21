@@ -25,15 +25,14 @@ class App extends React.Component{
 		this.state = {
 			posts:[],
 			filteredPosts: [],
-			location: '',
-			photo: '',
 			search: '',
-			title: '',
+			// title: '',
+			// location: '',
+			// photo: '',
 			blogPage: true,
 			newPostShow: false
 		}
 		this.addPost = this.addPost.bind(this);
-		// this.getLocation = this.getLocation.bind(this);
 		this.uploadPhoto = this.uploadPhoto.bind(this);
 		this.trackChange = this.trackChange.bind(this);
 		this.searchToState = this.searchToState.bind(this);
@@ -66,14 +65,14 @@ class App extends React.Component{
 	})
 	}
 	showForm(e){
-	//when new post clicked pop up module that shows the form
 	e.preventDefault();
-		console.log('shit works');
+	this.overlay.classList.add('show');
 		this.setState({
 		newPostShow: true
 		});
 	}
 	hideModal(e){
+	this.overlay.classList.remove('show');
 		this.setState({
 			newPostShow: false
 		})
@@ -105,6 +104,7 @@ class App extends React.Component{
 	}
 	addPost(e){
 		e.preventDefault();
+		this.overlay.classList.remove('show');
 		//submit information to firebase
 		//close form modal and hide
 		//add new post tile to the home page
@@ -169,7 +169,7 @@ class App extends React.Component{
 					<input type="file" name="photo" className=" form__post--input" accept="image/*" onChange={this.uploadPhoto} />
 					<label htmlFor="title">Note</label>
 					<textarea type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
-					<button className="button button__submit">Add Post</button>
+					<button className="button button__submit">ADD POST</button>
 				</form>
 			)
 		}else{
@@ -192,13 +192,10 @@ class App extends React.Component{
 					{this.state.filteredPosts.map((item) => { return <Blogcard data={item} remove={this.removePost} key={item.key} />
 						})}
 				</ul>
-			)
-		}
-
+		)}
 		let account = (
 			<Header />
 		);
-
 		let blogPage = (
 			<div>
 				<header className="header__blogPage">
@@ -217,12 +214,11 @@ class App extends React.Component{
 		)
 		return (
 			<div>
+				<div className="overlay" ref={ ref => this.overlay = ref}></div>
 				{this.state.blogPage === false ? blogPage : account}
 			</div>
 		)
 	}
 }
 
-
 ReactDOM.render(<App />, document.getElementById('app'));
-

@@ -178,6 +178,19 @@ input {
   outline: none;
   border: 1px solid #333438; }
 
+.overlay.show {
+  visibility: visible; }
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  visibility: hidden; }
+
 .blogMason {
   width: 90%;
   margin: 25px auto;
@@ -245,7 +258,7 @@ input {
   margin: 0 auto;
   width: 60%;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 20%;
   z-index: 10; }
   .form__post h2 {
@@ -254,15 +267,6 @@ input {
     margin-top: 20px;
     margin-bottom: 5px;
     letter-spacing: 2px; }
-
-.form__post--input {
-  font-family: "Space Mono", monospace;
-  color: #231F20;
-  background-color: #FFFCF9;
-  width: 80%;
-  margin: 0 auto;
-  font-size: 1.6rem;
-  padding: 10px; }
 
 .autocompleteInput {
   margin: 0 auto; }
@@ -291,6 +295,20 @@ input {
   margin: 10px 0;
   padding: 20px;
   width: 100%; }
+
+.blogContent:hover {
+  background-color: #EEE5DC; }
+
+.blogContent.focus {
+  background-color: #FBFAFA;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 20px;
+  position: fixed;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  z-index: 15; }
 
 .cardTitle {
   font-family: "Rubik", sans-serif;

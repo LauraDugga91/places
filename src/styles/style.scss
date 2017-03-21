@@ -80,8 +80,19 @@ input {
 	border: 1px solid $inputBorderColor;
 }
 
-span {
-	// display: none;
+.overlay.show{
+	visibility: visible;
+}
+
+.overlay{
+	background-color: rgba(255,255,255, 0.9);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 5;
+	visibility: hidden;
 }
 
 .blogMason{
@@ -144,9 +155,8 @@ span {
 	padding: 30px;
 	margin:0 auto;
 	width:60%;
-	// align-content:center;
 	position: absolute;
-	top: 50%;
+	top: 10%;
 	left:20%;
 	z-index: 10;
 	h2{
@@ -157,16 +167,6 @@ span {
 		margin-bottom: 5px;
 		letter-spacing: 2px;
 	}
-}
-
-.form__post--input{
-	font-family: $contentTypog;
-	color: $mainTextColor;
-	background-color: $buttonTextColor;
-	width:80%;
-	margin:0 auto;
-	font-size: 1.6rem;
-	padding: 10px;
 }
 
 .autocompleteInput {
@@ -198,6 +198,22 @@ span {
 	margin:  10px 0;
 	padding: 20px;
 	width: 100%; 
+}
+
+.blogContent:hover{
+	background-color: #EEE5DC;
+}
+
+.blogContent.focus{
+	background-color: $postBackgroundColor;
+	display: inline-block;
+	margin:  10px 0;
+	padding: 20px;
+	position: fixed;
+	top: 10%;
+	left: 25%;
+	width: 50%; 
+	z-index: 15;
 }
 
 .cardTitle {
