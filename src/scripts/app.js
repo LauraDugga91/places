@@ -86,25 +86,20 @@ class App extends React.Component{
 	}
 	uploadPhoto(e) {
 		let file = e.target.files[0];
+		console.log(file.name);
 		const storageRef = firebase.storage().ref('userPhotos/' + file.name)
 		const task = storageRef.put(file).then(() => {
-		const urlObject = storageRef.getDownloadURL().then((data) => {
-
-
-		this.setState ({
-			photo: data })
+			const urlObject = storageRef.getDownloadURL().then((data) => {
+				this.setState ({photo: data })
 			})
 		});
 	}
 	addPost(e){
 		e.preventDefault();
 		this.overlayForm.classList.remove('show');
-		let noPhoto;
-		if(this.state.photo === undefined) {
-			noPhoto = ""
-		} else {
-			noPhoto = this.state.photo
-		}
+
+		console.log(this.state.photo);
+		let photo = this.state.photo || undefined
 		//submit information to firebase
 		//close form modal and hide
 		//add new post tile to the home page
@@ -113,7 +108,7 @@ class App extends React.Component{
 			title: this.state.title,
 			location: this.state.location,
 			note: this.state.note,
-			photo: noPhoto,
+			photo: photo,
 			};
 			const dbRef = firebase.database().ref();
 			dbRef.push(post);
