@@ -80,24 +80,16 @@ input {
 	border: 1px solid $inputBorderColor;
 }
 
-.overlayForm.show{
-	visibility: visible;
-}
-
-.overlayPost.show{
-	visibility: visible;
-}
-
-.overlayPost{
-	background-color: rgba(255,255,255, 0.9);
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: -1000;
-	visibility: hidden;
-}
+// .overlayPost{
+// 	background-color: rgba(255,255,255, 0.9);
+// 	position: fixed;
+// 	top: 0;
+// 	right: 0;
+// 	bottom: 0;
+// 	left: 0;
+// 	z-index: -1000;
+// 	visibility: hidden;
+// }
 
 .overlayForm{
 	background-color: rgba(255,255,255, 0.9);
@@ -108,6 +100,14 @@ input {
 	left: 0;
 	z-index: 10;
 	visibility: hidden;
+}
+
+.overlayForm.show{
+	visibility: visible;
+}
+
+.overlayPost.show{
+	visibility: visible;
 }
 
 
@@ -150,6 +150,7 @@ input {
 
 .userForm input{
 	font-family: $contentTypog;
+	width: 60%;
 	font-size: 2rem;
 	padding: 10px;
 }
@@ -168,7 +169,7 @@ input {
 	flex-direction: column;
 	justify-content: center;
 	align-content:center;
-	padding: 30px;
+	padding: 20px;
 	margin:0 auto;
 	width:60%;
 	position: absolute;
@@ -176,6 +177,7 @@ input {
 	left:20%;
 	z-index: 100;
 	h2{
+		margin-top: 10px;
 		margin-bottom: 20px;
 	}
 	label {
@@ -183,6 +185,14 @@ input {
 		margin-bottom: 5px;
 		letter-spacing: 2px;
 	}
+}
+
+.form__post--input{
+	margin: auto;
+	width: 70%;
+	font-family: $contentTypog;
+	font-size: 2rem;
+	padding: 10px;
 }
 
 .autocompleteInput {
@@ -212,13 +222,9 @@ input {
 	text-align: left;
 	background-color: $postBackgroundColor;
 	display: inline-block;
-	margin:  10px 0;
+	margin:  10px auto;
 	padding: 20px;
 	width: 100%; 
-	z-index: 100;
-	img {
-		width:90%;
-	}
 }
 
 .blogContent:hover{
@@ -226,25 +232,57 @@ input {
 }
 
 .blogContent.focus{
-	background-color: $postBackgroundColor;
-	display: inline-block;
-	margin:  10px 0;
-	padding: 20px;
+	background-color: $modalBackgroundColor;
+	border: 4px solid $formBorderColor;
+	display: flex;
+	font-size: 2rem;
+	flex-direction: column;
+	margin:  10px auto;
+	padding: 30px;
+	width: 100%;
 	position: absolute;
-	top: 10%;
-	left: 25%;
-	width: 50%; 
-	z-index: 100;
-	height: 80vh;
-	img{
-		width:90%;
+	top: -10px;
+	right:0;
+	left:0;
+	height: 100vh;
+	z-index: 105;
+	i{
+		margin: auto;
+		font-size: 2rem;
 	}
+	img {
+		margin: 0 auto;
+		height: 50vh; 
+		width:auto;
+	}
+
+	.closePost{
+		display: flex;
+		justify-content: center;
+		margin:auto;
+		width: 5%;
+		font-size: 2rem;
+		
+	}
+	.button__remove{
+		display: flex;
+		justify-content: center;
+		margin:auto;
+		width: 5%;
+		font-size: 2rem;
+	}
+}
+
+.cardPhoto{
+	width: 95%;
+	margin: 0 auto;
 }
 
 .cardTitle {
 	font-family: $headerTypog;
 	color: $mainTextColor;
 	padding: 10px 20px;
+	margin: 0 auto;
 }
 
 .fa-compass{
@@ -254,11 +292,7 @@ input {
 .cardLocation{
 	font-family: $contentTypog;
 	padding: 10px 20px;
-	margin:0;
-}
-
-.cardPhoto{
-	width: 100%;
+	margin:0 auto;
 }
 
 .fa-sticky-note-o{
@@ -269,23 +303,42 @@ input {
 .cardNote{
 	font-family: $contentTypog;
 	padding: 10px 20px;
-	margin:0;
+	margin:0 auto;
 }
 
 // buttons
 .button{
 	background:none;
 	border:none;
-	font-size:1em;
+	font-size:1.5em;
 	color: #FFFCF9;
 	font-family: $contentTypog;
 	background-color: $buttonBackgroundColor;
 }
 
+.closePost {
+	outline:none;
+	font-size: 1.8rem;
+	color: $mainTextColor;
+	background-color: #FFF;
+	border: 1px solid $inputBorderColor;
+}
+
+.button__action--search {
+	margin: 10px auto;
+	background:none;
+	border:none;
+	font-size:1.8em;
+	color: #FFFCF9;
+	font-family: $contentTypog;
+	background-color: #89949E
+}
+
 .button__submit {
 	margin: 10px auto;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	padding: 10px;
+	letter-spacing: 1.5px;
 	font-family: $contentTypog;
 }
 
@@ -299,8 +352,18 @@ input {
 
 .button__remove{
 	outline:none;
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	color: $mainTextColor;
 	background-color: #FFF;
 	border: 1px solid $inputBorderColor;
+}
+
+.button__exitForm{
+	margin:20px auto;
+	outline: none;
+	font-size: 1.8rem;
+	color: $mainTextColor;
+	background-color: #FFF;
+	border: 1px solid $inputBorderColor;
+	width: 5%;
 }

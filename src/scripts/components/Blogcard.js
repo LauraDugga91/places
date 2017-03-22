@@ -35,14 +35,15 @@
  	render(){
  		return (
  			<li className="blogContent" onClick={this.showPost} ref={ ref => this.blogContent = ref}>
+ 			<div className="overlayPost" ref={ ref => this.overlayPost = ref}></div>
  				{(()=>{
  					if(this.state.closePost) {
- 						return (<button onClick={this.hidePost} ref={ ref => this.blogContent = ref} >
+ 						return (
+ 							<button className="closePost" onClick={this.hidePost} ref={ ref => this.blogContent = ref} >
 	 						<i className="fa fa-times" aria-hidden="true"></i>
-	 					</button>)
+	 						</button>)
  					}
  				})()}
- 				<div className="overlayPost" ref={ ref => this.overlayPost = ref}></div>
  				<h2 className="cardTitle">{this.props.data.title}</h2>
 		 		<p className="cardLocation"><i className="fa fa-compass" aria-hidden="true"></i>
 					{this.props.data.location}</p>

@@ -154,12 +154,12 @@ class App extends React.Component{
 		if(this.state.newPostShow === true){
 			newPostForm = (
 				<form className="form__post" htmlFor="postForm" onSubmit={this.addPost}>
-					<button onClick={this.hideModal}>
+					<button className="button button__exitForm" onClick={this.hideModal}>
 						<i className="fa fa-times" aria-hidden="true"></i>
 					</button>
 					<h2>ADD A NEW PLACE:</h2>
 					<label htmlFor="title">Title</label>
-					<input type="text" name="title" className="form__post--input"onChange={this.trackChange}/>
+					<input type="text" name="title" className="form__post--input" onChange={this.trackChange}/>
 					<label htmlFor="location">Location</label>
 					<Autocomplete name="location" className="autocompleteInput form__post--input" style={{display: 'flex'}}  onPlaceSelected={(place) => {
 						console.log(place);
@@ -203,7 +203,7 @@ class App extends React.Component{
 						<button className="button button--header" onClick={this.showForm}>+ New Post</button>
 						<button className="button button--header" onClick={this.signOut}>Sign Out</button>
 					</div>
-					<h1>PLACES</h1>
+					<h1>FLASHBACK</h1>
 				</header>
 				{newPostForm}
 				<Searchbar searchToState ={this.searchToState} searchPosts = {this.searchPosts}/>

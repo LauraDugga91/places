@@ -178,22 +178,6 @@ input {
   outline: none;
   border: 1px solid #333438; }
 
-.overlayForm.show {
-  visibility: visible; }
-
-.overlayPost.show {
-  visibility: visible; }
-
-.overlayPost {
-  background-color: rgba(255, 255, 255, 0.9);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1000;
-  visibility: hidden; }
-
 .overlayForm {
   background-color: rgba(255, 255, 255, 0.9);
   position: fixed;
@@ -203,6 +187,12 @@ input {
   left: 0;
   z-index: 10;
   visibility: hidden; }
+
+.overlayForm.show {
+  visibility: visible; }
+
+.overlayPost.show {
+  visibility: visible; }
 
 .blogMason {
   width: 90%;
@@ -246,6 +236,7 @@ input {
 
 .userForm input {
   font-family: "Space Mono", monospace;
+  width: 60%;
   font-size: 2rem;
   padding: 10px; }
 
@@ -267,7 +258,7 @@ input {
       justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  padding: 30px;
+  padding: 20px;
   margin: 0 auto;
   width: 60%;
   position: absolute;
@@ -275,11 +266,19 @@ input {
   left: 20%;
   z-index: 100; }
   .form__post h2 {
+    margin-top: 10px;
     margin-bottom: 20px; }
   .form__post label {
     margin-top: 20px;
     margin-bottom: 5px;
     letter-spacing: 2px; }
+
+.form__post--input {
+  margin: auto;
+  width: 70%;
+  font-family: "Space Mono", monospace;
+  font-size: 2rem;
+  padding: 10px; }
 
 .autocompleteInput {
   margin: 0 auto; }
@@ -306,34 +305,63 @@ input {
   text-align: left;
   background-color: #FBFAFA;
   display: inline-block;
-  margin: 10px 0;
+  margin: 10px auto;
   padding: 20px;
-  width: 100%;
-  z-index: 100; }
-  .blogContent img {
-    width: 90%; }
+  width: 100%; }
 
 .blogContent:hover {
   background-color: #EEE5DC; }
 
 .blogContent.focus {
-  background-color: #FBFAFA;
-  display: inline-block;
-  margin: 10px 0;
-  padding: 20px;
+  background-color: #EFE6DD;
+  border: 4px solid #FFFDF9;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 2rem;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  margin: 10px auto;
+  padding: 30px;
+  width: 100%;
   position: absolute;
-  top: 10%;
-  left: 25%;
-  width: 50%;
-  z-index: 100;
-  height: 80vh; }
+  top: -10px;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 105; }
+  .blogContent.focus i {
+    margin: auto;
+    font-size: 2rem; }
   .blogContent.focus img {
-    width: 90%; }
+    margin: 0 auto;
+    height: 50vh;
+    width: auto; }
+  .blogContent.focus .closePost {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    margin: auto;
+    width: 5%;
+    font-size: 2rem; }
+  .blogContent.focus .button__remove {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    margin: auto;
+    width: 5%;
+    font-size: 2rem; }
+
+.cardPhoto {
+  width: 95%;
+  margin: 0 auto; }
 
 .cardTitle {
   font-family: "Rubik", sans-serif;
   color: #231F20;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  margin: 0 auto; }
 
 .fa-compass {
   font-size: 2rem;
@@ -342,10 +370,7 @@ input {
 .cardLocation {
   font-family: "Space Mono", monospace;
   padding: 10px 20px;
-  margin: 0; }
-
-.cardPhoto {
-  width: 100%; }
+  margin: 0 auto; }
 
 .fa-sticky-note-o {
   font-size: 2rem;
@@ -354,20 +379,37 @@ input {
 .cardNote {
   font-family: "Space Mono", monospace;
   padding: 10px 20px;
-  margin: 0; }
+  margin: 0 auto; }
 
 .button {
   background: none;
   border: none;
-  font-size: 1em;
+  font-size: 1.5em;
   color: #FFFCF9;
   font-family: "Space Mono", monospace;
   background-color: #2B3145; }
 
+.closePost {
+  outline: none;
+  font-size: 1.8rem;
+  color: #231F20;
+  background-color: #FFF;
+  border: 1px solid #333438; }
+
+.button__action--search {
+  margin: 10px auto;
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  color: #FFFCF9;
+  font-family: "Space Mono", monospace;
+  background-color: #89949E; }
+
 .button__submit {
   margin: 10px auto;
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 10px;
+  letter-spacing: 1.5px;
   font-family: "Space Mono", monospace; }
 
 .button__submit--width {
@@ -378,7 +420,16 @@ input {
 
 .button__remove {
   outline: none;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: #231F20;
   background-color: #FFF;
   border: 1px solid #333438; }
+
+.button__exitForm {
+  margin: 20px auto;
+  outline: none;
+  font-size: 1.8rem;
+  color: #231F20;
+  background-color: #FFF;
+  border: 1px solid #333438;
+  width: 5%; }
