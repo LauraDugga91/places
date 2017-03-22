@@ -82,6 +82,7 @@ label{
 
 textarea{
 	resize:none;
+	font-size: 1.5rem;
 	border: 1px solid $inputBorderColor;
 }
 
@@ -125,7 +126,7 @@ input {
 	width: 95%;
 	margin: 25px auto;
 	column-count: 3;
-	column-gap: 15px;
+	column-gap: 18px;
 	@media (max-width: 768px) {
 		column-count: 2;
 		column-gap: 10px;
@@ -137,6 +138,12 @@ input {
 }
 
 // Header.js styling
+.tagline {
+	font-family: $contentTypog;
+	font-style: italic;
+	font-size: 1.6rem;
+}
+
 .flexWrapper {
 	display: flex;
 	justify-content: space-between;
@@ -164,13 +171,14 @@ input {
 		margin-bottom: 5px;
 		letter-spacing: 2px;
 	}
-}
-
-.userForm input{
-	font-family: $contentTypog;
-	width: 60%;
-	font-size: 2rem;
-	padding: 10px;
+	input{
+		font-family: $contentTypog;
+		text-align: center;
+		margin: auto;
+		width: 80%;
+		font-size: 2rem;
+		padding: 10px;
+	}
 }
 
 // app.js styling
@@ -261,6 +269,7 @@ input {
 	text-align: left;
 	background-color: $postBackgroundColor;
 	display: inline-block;
+	box-shadow: 0px 0px 15px -4px rgba(107,107,107,0.5);
 	font-size: 1.4rem;
 	margin:  10px auto;
 	padding: 20px;
@@ -270,12 +279,13 @@ input {
 	}
 	@media (max-width: 370px) {
 		font-size: 1.2rem;
-		padding: 5px;
+		padding: 8px;
 	}
 }
 
 .blogContent:hover{
 	background-color: #EEE5DC;
+	cursor: pointer;
 }
 
 .blogContent.focus{
@@ -301,7 +311,7 @@ input {
 	img {
 		margin: 0 auto;
 		height: 50vh; 
-		width:auto;
+		width: auto;
 	}
 	.fa-sticky-note-o{
 		margin-right: 10px;
@@ -321,7 +331,7 @@ input {
 		display: flex;
 		justify-content: center;
 		margin: auto;
-		width: 5%;
+		width: 10%;
 		font-size: 2rem;
 	}
 	@media (max-width: 768px) {
@@ -334,7 +344,7 @@ input {
 	@media (max-width: 520px) {
 		padding: 15px;
 		img{
-			height:30vh;
+			height: 30vh;
 			margin: 40px auto;
 		}
 	}
@@ -342,13 +352,13 @@ input {
 		height: 90vh;
 		padding: 10px;
 		img{
-			height:25vh;
+			height: 25vh;
 			margin: 40px auto;
 		}
 }
 
 .cardPhoto{
-	width: 95%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -399,9 +409,9 @@ input {
 
 // buttons
 .button{
-	background:none;
-	border:none;
-	font-size:1.5em;
+	background: none;
+	border: none;
+	font-size: 1.5em;
 	color: #FFFCF9;
 	font-family: $contentTypog;
 	background-color: $buttonBackgroundColor;
@@ -428,7 +438,7 @@ input {
 }
 
 .button__submit {
-	margin: 10px auto;
+	margin: 20px auto;
 	font-size: 1.8rem;
 	padding: 10px;
 	letter-spacing: 1.5px;
@@ -460,10 +470,15 @@ input {
 
 .button__remove{
 	outline:none;
+	width: 10%;
 	font-size: 1.8rem;
 	color: $mainTextColor;
 	background-color: #FFF;
 	border: 1px solid $inputBorderColor;
+	i {
+		text-align: center;
+		margin: 0 auto;
+	}
 }
 
 .button__exitForm{

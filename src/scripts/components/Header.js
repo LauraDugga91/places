@@ -79,6 +79,7 @@ export default class Header extends React.Component{
 		return (
 			<header className="header__signIn">
 				<h1>FLASHBACK</h1>
+				<p className="tagline">Create personal sticky notes for places you want to remember.</p>
 				<ul>
 					<li><a href="" className="signUp" onClick={this.showForm}>CREATE ACCOUNT</a></li>
 					<li><a href="" className="login" onClick={this.showForm}>LOG IN</a></li>

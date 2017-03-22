@@ -50,7 +50,6 @@ class App extends React.Component{
 					postKey.key = itemKey;
 					postArray.push(databaseData[itemKey]);
 				}
-				console.log(postArray);
 				this.setState({
 				posts:postArray,
 				blogPage: false
@@ -74,9 +73,7 @@ class App extends React.Component{
 	}
 	hideBlogPage(e){
 		const currentUser = firebase.auth().currentUser;
-		console.log(currentUser)
 		if(currentUser) {
-			console.log('logged IN')
 		}
 		this.setState({
 			blogPage: false
@@ -89,9 +86,11 @@ class App extends React.Component{
 	}
 	uploadPhoto(e) {
 		let file = e.target.files[0];
-		const storageRef = firebase.storage().ref('userPhotos/' + file.name);
+		const storageRef = firebase.storage().ref('userPhotos/' + file.name)
 		const task = storageRef.put(file).then(() => {
 		const urlObject = storageRef.getDownloadURL().then((data) => {
+
+
 		this.setState ({
 			photo: data })
 			})
@@ -100,14 +99,21 @@ class App extends React.Component{
 	addPost(e){
 		e.preventDefault();
 		this.overlayForm.classList.remove('show');
+		let noPhoto;
+		if(this.state.photo === undefined) {
+			noPhoto = ""
+		} else {
+			noPhoto = this.state.photo
+		}
 		//submit information to firebase
 		//close form modal and hide
 		//add new post tile to the home page
+
 		const post = {
 			title: this.state.title,
 			location: this.state.location,
-			note:this.state.note,
-			photo: this.state.photo,
+			note: this.state.note,
+			photo: noPhoto,
 			};
 			const dbRef = firebase.database().ref();
 			dbRef.push(post);
@@ -127,18 +133,15 @@ class App extends React.Component{
 		const filtered = this.state.posts.filter(post => {
 		  return Object.values(post).join(',').toLowerCase().includes(this.state.search.toLowerCase());
 		})
-		console.log(this.state.search);
 		this.setState({
 		 filteredPosts: filtered
 		})
 	}
 	removePost(postToRemove){
-		console.log(postToRemove);
 		const dbRef = firebase.database().ref(postToRemove.key);
 		dbRef.remove();
 	}
 	signOut(e){
-		console.log('signing out');
 		firebase.auth().signOut();
 		this.setState({
 		 blogPage: true
@@ -153,17 +156,17 @@ class App extends React.Component{
 						<i className="fa fa-times" aria-hidden="true"></i>
 					</button>
 					<h2>ADD A NEW PLACE:</h2>
-					<label htmlFor="title">Title</label>
-					<input type="text" name="title" className="form__post--input" onChange={this.trackChange}/>
-					<label htmlFor="location">Location</label>
+					<label htmlFor="title">Title *</label>
+					<input placeholder="Enter a title" type="text" name="title" className="form__post--input" onChange={this.trackChange}/>
+					<label htmlFor="location">Location *</label>
 					<Autocomplete name="location" className="autocompleteInput form__post--input" style={{display: 'flex'}}  onPlaceSelected={(place) => {
 						console.log(place);
 						this.setState({
 							location: place.formatted_address})}}  types={['establishment','geocode'] } />
 					<label htmlFor="photo">Image</label>
 					<input type="file" name="photo" className=" form__post--input" accept="image/*" onChange={this.uploadPhoto} />
-					<label htmlFor="title">Note</label>
-					<textarea maxlength="200" type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
+					<label htmlFor="title">Note *</label>
+					<textarea placeholder="Enter a quick note (max 200 characters)" maxLength="200" type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
 					<button className="button button__submit">ADD POST</button>
 				</form>
 			)
@@ -193,7 +196,7 @@ class App extends React.Component{
 			<div>
 				<header className="header__blogPage">
 					<div className="flexWrapper">
-						<button className="button button--header" onClick={this.showForm}><i className="fa fa-plus" aria-hidden="true"></i>  Add  Post</button>
+						<button className="button button--header" onClick={this.showForm}><i className="fa fa-plus" aria-hidden="true"></i> Add  Post</button>
 						<button className="button button--header" onClick={this.signOut}><i className="fa fa-sign-out" aria-hidden="true"></i> Sign Out
 						</button>
 					</div>

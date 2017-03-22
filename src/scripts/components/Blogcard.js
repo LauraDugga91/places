@@ -17,6 +17,7 @@
 		e.preventDefault();
 		this.blogContent.classList.add('focus');
 		this.overlayPost.classList.add('show');
+		window.scroll(0, 0);
 		this.setState({
 			closePost: true
 		})
@@ -33,6 +34,9 @@
  		});
  	}
  	render(){
+ 		let renderImage = (
+ 			<img className="cardPhoto" src= {`${this.props.data.photo}`} />
+ 		)
  		return (
  			<li className="blogContent" onClick={this.showPost} ref={ ref => this.blogContent = ref}>
  			<div className="overlayPost" ref={ ref => this.overlayPost = ref}></div>
@@ -47,10 +51,10 @@
  				<h2 className="cardTitle">{this.props.data.title}</h2>
 		 		<p className="cardLocation"><i className="fa fa-compass" aria-hidden="true"></i>
 					{this.props.data.location}</p>
-		 		<img className="cardPhoto" src= {`${this.props.data.photo}`} />
+		 			{this.props.data.photo !== "" ? renderImage : null}
 		 		<p className="cardNote"><i className="fa fa-sticky-note-o" aria-hidden="true"></i>
 					{this.props.data.note}</p>
-		 		<button className="button button__remove" onClick={() => this.props.remove(this.props.data)}>
+		 		<button className="button__remove" onClick={() => this.props.remove(this.props.data)}>
 		 			<i className ="fa fa-trash" aria-hidden="true"></i>
 		 		</button>
 	 		</li>
