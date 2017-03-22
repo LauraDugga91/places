@@ -26,9 +26,6 @@ class App extends React.Component{
 			posts:[],
 			filteredPosts: [],
 			search: '',
-			// title: '',
-			// location: '',
-			// photo: '',
 			blogPage: true,
 			newPostShow: false
 		}
@@ -200,8 +197,9 @@ class App extends React.Component{
 			<div>
 				<header className="header__blogPage">
 					<div className="flexWrapper">
-						<button className="button button--header" onClick={this.showForm}>+ New Post</button>
-						<button className="button button--header" onClick={this.signOut}>Sign Out</button>
+						<button className="button button--header" onClick={this.showForm}><i className="fa fa-plus" aria-hidden="true"></i> New Post</button>
+						<button className="button button--header" onClick={this.signOut}>Sign Out <i className="fa fa-sign-out" aria-hidden="true"></i>
+						</button>
 					</div>
 					<h1>FLASHBACK</h1>
 				</header>

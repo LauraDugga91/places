@@ -42,6 +42,7 @@ body {
 h1{
 	font-family: $headerTypog;
 	color: $mainTextColor;
+	margin-top: 50px;
 	font-size: 3.5rem;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -106,16 +107,24 @@ input {
 	visibility: visible;
 }
 
-.overlayPost.show{
-	visibility: visible;
-}
+// .overlayPost.show{
+// 	visibility: visible;
+// }
 
 
 .blogMason{
-	width: 90%;
+	width: 95%;
 	margin: 25px auto;
 	column-count: 3;
 	column-gap: 15px;
+	@media (max-width: 768px) {
+		column-count: 2;
+		column-gap: 10px;
+	}
+	@media (max-width: 370px) {
+		column-count: 1;
+		column-gap: 0px;
+	}
 }
 
 // Header.js styling
@@ -185,6 +194,18 @@ input {
 		margin-bottom: 5px;
 		letter-spacing: 2px;
 	}
+	@media (max-width: 768px) {
+		top: 10%;
+		left: 10%;
+		padding: 10px;
+		width: 80%;
+	}
+	@media (max-width: 370px) {
+		top: 10%;
+		left: 7%;
+		padding: 10px;
+		width: 90%;
+	}
 }
 
 .form__post--input{
@@ -193,6 +214,12 @@ input {
 	font-family: $contentTypog;
 	font-size: 2rem;
 	padding: 10px;
+	@media (max-width: 768px) {
+		width: 80%;
+	}
+	@media (max-width: 370px) {
+		width: 90%;
+	}
 }
 
 .autocompleteInput {
@@ -222,9 +249,17 @@ input {
 	text-align: left;
 	background-color: $postBackgroundColor;
 	display: inline-block;
+	font-size: 1.4rem;
 	margin:  10px auto;
 	padding: 20px;
 	width: 100%; 
+	@media (max-width: 520px) {
+		padding: 10px;
+	}
+	@media (max-width: 370px) {
+		font-size: 1.2rem;
+		padding: 5px;
+	}
 }
 
 .blogContent:hover{
@@ -255,7 +290,6 @@ input {
 		height: 50vh; 
 		width:auto;
 	}
-
 	.closePost{
 		display: flex;
 		justify-content: center;
@@ -271,6 +305,27 @@ input {
 		width: 5%;
 		font-size: 2rem;
 	}
+	@media (max-width: 768px) {
+		padding: 10px;
+		img{
+			height:40vh;
+			margin: 30px auto;
+		}
+	}
+	@media (max-width: 520px) {
+		padding: 10px;
+		img{
+			height:30vh;
+			margin: 40px auto;
+		}
+	}
+	@media (max-width: 370px) {
+		padding: 10px;
+		img{
+			height:25vh;
+			margin: 40px auto;
+		}
+	}
 }
 
 .cardPhoto{
@@ -281,29 +336,46 @@ input {
 .cardTitle {
 	font-family: $headerTypog;
 	color: $mainTextColor;
-	padding: 10px 20px;
+	padding: 10px 0 10px 0px;
 	margin: 0 auto;
+	@media (max-width: 370px) {
+
+	}
 }
 
 .fa-compass{
 	font-size: 2rem;
 	margin:10px 10px 10px -20px;
+	@media (max-width: 520px) {
+	margin:5px 10px 5px -5px;
+	}
 }
 .cardLocation{
 	font-family: $contentTypog;
 	padding: 10px 20px;
-	margin:0 auto;
+	margin: 10px auto;
+	@media (max-width: 520px) {
+	margin:15px auto;
+	padding: 5px;
+	}
 }
 
 .fa-sticky-note-o{
 	font-size: 2rem;
 	margin:10px 10px 10px -20px;
+	@media (max-width: 520px) {
+	margin:5px 10px 5px -5px;
+	}
 }
 
 .cardNote{
 	font-family: $contentTypog;
 	padding: 10px 20px;
-	margin:0 auto;
+	margin:10px auto;
+	@media (max-width: 520px) {
+		margin:15px auto;
+		padding: 5px;
+	}
 }
 
 // buttons
@@ -347,7 +419,12 @@ input {
 }
 
 .button--header {
-	width: 10%;
+	width: 20%;
+	padding: 15px 0;
+	@media (max-width: 768px) {
+		// margin: 10px auto;
+		// padding:0;
+	}
 }
 
 .button__remove{
@@ -360,10 +437,15 @@ input {
 
 .button__exitForm{
 	margin:20px auto;
+	padding:0;
 	outline: none;
 	font-size: 1.8rem;
 	color: $mainTextColor;
 	background-color: #FFF;
 	border: 1px solid $inputBorderColor;
 	width: 5%;
+	@media (max-width: 768px) {
+		margin: 10px auto;
+		padding:0;
+	}
 }

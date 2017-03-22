@@ -145,6 +145,7 @@ body {
 h1 {
   font-family: "Rubik", sans-serif;
   color: #231F20;
+  margin-top: 50px;
   font-size: 3.5rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -191,16 +192,25 @@ input {
 .overlayForm.show {
   visibility: visible; }
 
-.overlayPost.show {
-  visibility: visible; }
-
 .blogMason {
-  width: 90%;
+  width: 95%;
   margin: 25px auto;
   -moz-column-count: 3;
        column-count: 3;
   -moz-column-gap: 15px;
        column-gap: 15px; }
+  @media (max-width: 768px) {
+    .blogMason {
+      -moz-column-count: 2;
+           column-count: 2;
+      -moz-column-gap: 10px;
+           column-gap: 10px; } }
+  @media (max-width: 370px) {
+    .blogMason {
+      -moz-column-count: 1;
+           column-count: 1;
+      -moz-column-gap: 0px;
+           column-gap: 0px; } }
 
 .flexWrapper {
   display: -ms-flexbox;
@@ -272,6 +282,18 @@ input {
     margin-top: 20px;
     margin-bottom: 5px;
     letter-spacing: 2px; }
+  @media (max-width: 768px) {
+    .form__post {
+      top: 10%;
+      left: 10%;
+      padding: 10px;
+      width: 80%; } }
+  @media (max-width: 370px) {
+    .form__post {
+      top: 10%;
+      left: 7%;
+      padding: 10px;
+      width: 90%; } }
 
 .form__post--input {
   margin: auto;
@@ -279,6 +301,12 @@ input {
   font-family: "Space Mono", monospace;
   font-size: 2rem;
   padding: 10px; }
+  @media (max-width: 768px) {
+    .form__post--input {
+      width: 80%; } }
+  @media (max-width: 370px) {
+    .form__post--input {
+      width: 90%; } }
 
 .autocompleteInput {
   margin: 0 auto; }
@@ -305,9 +333,17 @@ input {
   text-align: left;
   background-color: #FBFAFA;
   display: inline-block;
+  font-size: 1.4rem;
   margin: 10px auto;
   padding: 20px;
   width: 100%; }
+  @media (max-width: 520px) {
+    .blogContent {
+      padding: 10px; } }
+  @media (max-width: 370px) {
+    .blogContent {
+      font-size: 1.2rem;
+      padding: 5px; } }
 
 .blogContent:hover {
   background-color: #EEE5DC; }
@@ -352,6 +388,24 @@ input {
     margin: auto;
     width: 5%;
     font-size: 2rem; }
+  @media (max-width: 768px) {
+    .blogContent.focus {
+      padding: 10px; }
+      .blogContent.focus img {
+        height: 40vh;
+        margin: 30px auto; } }
+  @media (max-width: 520px) {
+    .blogContent.focus {
+      padding: 10px; }
+      .blogContent.focus img {
+        height: 30vh;
+        margin: 40px auto; } }
+  @media (max-width: 370px) {
+    .blogContent.focus {
+      padding: 10px; }
+      .blogContent.focus img {
+        height: 25vh;
+        margin: 40px auto; } }
 
 .cardPhoto {
   width: 95%;
@@ -360,26 +414,40 @@ input {
 .cardTitle {
   font-family: "Rubik", sans-serif;
   color: #231F20;
-  padding: 10px 20px;
+  padding: 10px 0 10px 0px;
   margin: 0 auto; }
 
 .fa-compass {
   font-size: 2rem;
   margin: 10px 10px 10px -20px; }
+  @media (max-width: 520px) {
+    .fa-compass {
+      margin: 5px 10px 5px -5px; } }
 
 .cardLocation {
   font-family: "Space Mono", monospace;
   padding: 10px 20px;
-  margin: 0 auto; }
+  margin: 10px auto; }
+  @media (max-width: 520px) {
+    .cardLocation {
+      margin: 15px auto;
+      padding: 5px; } }
 
 .fa-sticky-note-o {
   font-size: 2rem;
   margin: 10px 10px 10px -20px; }
+  @media (max-width: 520px) {
+    .fa-sticky-note-o {
+      margin: 5px 10px 5px -5px; } }
 
 .cardNote {
   font-family: "Space Mono", monospace;
   padding: 10px 20px;
-  margin: 0 auto; }
+  margin: 10px auto; }
+  @media (max-width: 520px) {
+    .cardNote {
+      margin: 15px auto;
+      padding: 5px; } }
 
 .button {
   background: none;
@@ -416,7 +484,8 @@ input {
   width: 25%; }
 
 .button--header {
-  width: 10%; }
+  width: 20%;
+  padding: 15px 0; }
 
 .button__remove {
   outline: none;
@@ -427,9 +496,14 @@ input {
 
 .button__exitForm {
   margin: 20px auto;
+  padding: 0;
   outline: none;
   font-size: 1.8rem;
   color: #231F20;
   background-color: #FFF;
   border: 1px solid #333438;
   width: 5%; }
+  @media (max-width: 768px) {
+    .button__exitForm {
+      margin: 10px auto;
+      padding: 0; } }
