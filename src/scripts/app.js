@@ -6,10 +6,8 @@ import Searchbar from './components/Searchbar';
 import Blogcard from './components/Blogcard';
 import Autocomplete from 'react-google-autocomplete';
 
-
 const apiKey ='AIzaSyB1EIPG-WkM1tGCOP_sLE57sxcuz8DE-Vg';
 
-// firebase link
 const config = {
    apiKey: "AIzaSyBCiX2kJEHBw3hq54L3OY6mb-tDg75E8ro",
    authDomain: "places-blog-2ddc9.firebaseapp.com",
@@ -165,14 +163,12 @@ class App extends React.Component{
 					<label htmlFor="photo">Image</label>
 					<input type="file" name="photo" className=" form__post--input" accept="image/*" onChange={this.uploadPhoto} />
 					<label htmlFor="title">Note</label>
-					<textarea type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
+					<textarea maxlength="200" type="text" name="note" className="form__post--input" rows="4" cols="50" onChange={this.trackChange}></textarea>
 					<button className="button button__submit">ADD POST</button>
 				</form>
 			)
 		}else{
-			// newPostform = (
 			// 	console.log('no form showing');
-			// )
 		}
 // SETTING THE LOGIN PAGE
 		let postView ='';
@@ -197,8 +193,8 @@ class App extends React.Component{
 			<div>
 				<header className="header__blogPage">
 					<div className="flexWrapper">
-						<button className="button button--header" onClick={this.showForm}><i className="fa fa-plus" aria-hidden="true"></i> New Post</button>
-						<button className="button button--header" onClick={this.signOut}>Sign Out <i className="fa fa-sign-out" aria-hidden="true"></i>
+						<button className="button button--header" onClick={this.showForm}><i className="fa fa-plus" aria-hidden="true"></i>  Add  Post</button>
+						<button className="button button--header" onClick={this.signOut}><i className="fa fa-sign-out" aria-hidden="true"></i> Sign Out
 						</button>
 					</div>
 					<h1>FLASHBACK</h1>

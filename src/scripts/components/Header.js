@@ -1,7 +1,5 @@
 import React from 'react';
 
-//header will execute the sign up form and login form to appear and will authorize user to view their posts native to that login 
-
 export default class Header extends React.Component{
 	constructor(){
 		super();
