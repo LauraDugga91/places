@@ -249,6 +249,9 @@ input {
 	display: flex;
 	flex-direction: column;
 	justify-content:center;
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .form__search--input{
@@ -275,11 +278,11 @@ input {
 	padding: 20px;
 	width: 100%; 
 	@media (max-width: 520px) {
-		padding: 10px;
+		padding: 15px;
 	}
 	@media (max-width: 370px) {
 		font-size: 1.2rem;
-		padding: 8px;
+		padding: 10px;
 	}
 }
 
@@ -313,12 +316,8 @@ input {
 		height: 50vh; 
 		width: auto;
 	}
-	.fa-sticky-note-o{
-		margin-right: 10px;
-		}
-	}
-	.cardNote{
-		margin-right: 10px;
+	.fa-thumb-tack, .fa-sticky-note-o{
+		margin-right: 20px;
 	}
 	.closePost{
 		display: flex;
@@ -331,7 +330,7 @@ input {
 		display: flex;
 		justify-content: center;
 		margin: auto;
-		width: 10%;
+		width: 5%;
 		font-size: 2rem;
 	}
 	@media (max-width: 768px) {
@@ -355,8 +354,9 @@ input {
 			height: 25vh;
 			margin: 40px auto;
 		}
+	}
 }
-
+	
 .cardPhoto{
 	width: 100%;
 	margin: 0 auto;
@@ -372,13 +372,14 @@ input {
 	}
 }
 
-.fa-compass{
+.fa-thumb-tack{
 	font-size: 2rem;
 	margin:10px 10px 10px -20px;
 	@media (max-width: 520px) {
 	margin:5px 10px 5px -5px;
 	}
 }
+
 .cardLocation{
 	font-family: $contentTypog;
 	padding: 10px 20px;
@@ -469,6 +470,9 @@ input {
 }
 
 .button__remove{
+	display: block;
+	margin: 0 auto;
+	padding: 0;
 	outline:none;
 	width: 10%;
 	font-size: 1.8rem;
@@ -477,7 +481,7 @@ input {
 	border: 1px solid $inputBorderColor;
 	i {
 		text-align: center;
-		margin: 0 auto;
+		margin: 2px;
 	}
 }
 

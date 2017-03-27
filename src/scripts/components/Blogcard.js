@@ -46,7 +46,7 @@
  					}
  				})()}
  				<h2 className="cardTitle">{this.props.data.title}</h2>
-		 		<p className="cardLocation"><i className="fa fa-compass" aria-hidden="true"></i>
+		 		<p className="cardLocation"><i className="fa fa-thumb-tack" aria-hidden="true"></i>
 					{this.props.data.location}</p>
 					{this.props.data.photo ?
 						<img className="cardPhoto" src= {`${this.props.data.photo}`} />
