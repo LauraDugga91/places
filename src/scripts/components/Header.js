@@ -48,7 +48,11 @@ export default class Header extends React.Component{
 	}
 	render(){
 		//holds empty object where the selected form will go into
-		let loginForm = '';
+		let loginForm = (
+				<div className="imgContainer">
+					<img src="../../../images/project6Browser.png" alt="Photo of populated blog"/>
+				</div>
+			);
 		if (this.state.showForm === 'signUp'){
 			// sign up form
 			loginForm = (
